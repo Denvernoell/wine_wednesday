@@ -97,3 +97,20 @@ def upload_photo():
 # # Print results.
 # for row in rows.data:
 #     st.write(f"{row['name']} has a :{row['pet']}:")
+
+# create login screen with title "Wine Wednesday" and subtitle "Sign in to your account" with functionality to create and sign into account
+def login_screen():
+    st.title("Wine Wednesday")
+    st.subheader("Sign in to your account")
+    create_account()
+    sign_in()
+    sign_out()
+    reset_password()
+    update_password()
+    update_email()
+    update_user_data()
+
+# create page that allows user to add wine to database
+def logged_in_screen():
+    create_wine_table()
+    upload_photo()
