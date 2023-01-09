@@ -1,0 +1,2 @@
+"C:\Users\denve\AppData\Local\pypoetry\Cache\virtualenvs\pandas-analysis-Q-8eJEdZ-py3.9\Scripts\python.exe" -m streamlit run app.py
+"C:\Users\denve\AppData\Local\pypoetry\Cache\virtualenvs\pandas-analysis-Q-8eJEdZ-py3.9\Scripts\python.exe" -m streamlit run app.py

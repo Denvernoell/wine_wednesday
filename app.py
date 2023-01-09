@@ -114,3 +114,5 @@ def login_screen():
 def logged_in_screen():
     create_wine_table()
     upload_photo()
+
+login_screen()
