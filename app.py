@@ -114,6 +114,7 @@ try:
 	if st.session_state['logged_in']:
 		st.success('Logged in')
         app_page()
+
 		# if st.button("Restart"):
 		# 	init_connection()
 	else:
