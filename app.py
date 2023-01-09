@@ -16,39 +16,39 @@ supabase = init_connection()
 
 # allow user to create account with google account using supabase module
 
-# allow user to sign out using supabase module
-def sign_out():
-    if st.button("Sign out"):
-        user = supabase.auth.sign_out()
-        st.write(user)
+# # allow user to sign out using supabase module
+# def sign_out():
+#     if st.button("Sign out"):
+#         user = supabase.auth.sign_out()
+#         st.write(user)
 
-# allow user to reset password using supabase module
-def reset_password():
-    email = st.text_input("Email")
-    if st.button("Reset password"):
-        user = supabase.auth.api.reset_password_for_email(email)
+# # allow user to reset password using supabase module
+# def reset_password():
+#     email = st.text_input("Email")
+#     if st.button("Reset password"):
+#         user = supabase.auth.api.reset_password_for_email(email)
 
-# allow user to update password using supabase module
-def update_password():
-    new_password = st.text_input("New password", type="password")
-    if st.button("Update password"):
-        user = supabase.auth.update(email=email, password=password, data={"password": new_password})
+# # allow user to update password using supabase module
+# def update_password():
+#     new_password = st.text_input("New password", type="password")
+#     if st.button("Update password"):
+#         user = supabase.auth.update(email=email, password=password, data={"password": new_password})
 
-# allow user to update email using supabase module
-def update_email():
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
-    new_email = st.text_input("New email")
-    if st.button("Update email"):
-        user = supabase.auth.update(email=email, password=password, data={"email": new_email})
+# # allow user to update email using supabase module
+# def update_email():
+#     email = st.text_input("Email")
+#     password = st.text_input("Password", type="password")
+#     new_email = st.text_input("New email")
+#     if st.button("Update email"):
+#         user = supabase.auth.update(email=email, password=password, data={"email": new_email})
 
-# allow user to update user data using supabase module
-def update_user_data():
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
-    new_data = st.text_input("New data")
-    if st.button("Update user data"):
-        user = supabase.auth.update(email=email, password=password, data={"user_metadata": new_data})
+# # allow user to update user data using supabase module
+# def update_user_data():
+#     email = st.text_input("Email")
+#     password = st.text_input("Password", type="password")
+#     new_data = st.text_input("New data")
+#     if st.button("Update user data"):
+#         user = supabase.auth.update(email=email, password=password, data={"user_metadata": new_data})
 
     
 
@@ -90,12 +90,17 @@ def login_page():
     st.subheader("Sign in to your account")
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
+    try:
+    
 
-    if st.button("Sign up"):
-        user = supabase.auth.sign_up(email=email, password=password)
-        st.write(user)
-        st.write(f"Signed up {email}")
+        if st.button("Sign up"):
+            user = supabase.auth.sign_up(email=email, password=password)
+            st.write(user)
+            st.write(f"Signed up {email}")
 
+    except Exception as E:
+        st.markdown(E)
+        
     if st.button("Sign in"):
         user = supabase.auth.sign_in(email=email, password=password)
         st.session_state['logged_in'] = True
