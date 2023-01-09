@@ -85,7 +85,7 @@ def upload_photo():
 # create login screen with title "Wine Wednesday" and subtitle "Sign in to your account" with functionality to create and sign into account
 
 
-def login_screen():
+def login_page():
     st.title("Wine Wednesday")
     st.subheader("Sign in to your account")
     email = st.text_input("Email")
@@ -106,11 +106,18 @@ def login_screen():
     # update_user_data()
 
 # create page that allows user to add wine to database
-def app_screen():
+def app_page():
     create_wine_table()
     upload_photo()
 
-if st.session_state['logged_in'] == False:
-    login_screen()
-else:
-    app_screen()
+try:
+	if st.session_state['logged_in']:
+		st.success('Logged in')
+        app_page()
+		# if st.button("Restart"):
+		# 	init_connection()
+	else:
+		login_page()
+except:
+	st.session_state['logged_in'] = False
+	login_page()
