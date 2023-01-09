@@ -15,20 +15,6 @@ supabase = init_connection()
 
 
 # allow user to create account with google account using supabase module
-def create_account():
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
-    if st.button("Sign up"):
-        user = supabase.auth.sign_up(email=email, password=password)
-        st.write(user)
-
-# allow user to sign in with google account using supabase module
-def sign_in():
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
-    if st.button("Sign in"):
-        user = supabase.auth.sign_in(email=email, password=password)
-        st.write(user)
 
 # allow user to sign out using supabase module
 def sign_out():
@@ -44,8 +30,6 @@ def reset_password():
 
 # allow user to update password using supabase module
 def update_password():
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
     new_password = st.text_input("New password", type="password")
     if st.button("Update password"):
         user = supabase.auth.update(email=email, password=password, data={"password": new_password})
@@ -99,20 +83,34 @@ def upload_photo():
 #     st.write(f"{row['name']} has a :{row['pet']}:")
 
 # create login screen with title "Wine Wednesday" and subtitle "Sign in to your account" with functionality to create and sign into account
+
+
 def login_screen():
     st.title("Wine Wednesday")
     st.subheader("Sign in to your account")
-    create_account()
-    sign_in()
-    sign_out()
-    reset_password()
-    update_password()
-    update_email()
-    update_user_data()
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+
+    if st.button("Sign up"):
+        user = supabase.auth.sign_up(email=email, password=password)
+        st.write(user)
+        st.write(f"Signed up {email}")
+
+    if st.button("Sign in"):
+        user = supabase.auth.sign_in(email=email, password=password)
+        st.session_state['logged_in'] = True
+    # sign_out()
+    # reset_password()
+    # update_password()
+    # update_email()
+    # update_user_data()
 
 # create page that allows user to add wine to database
-def logged_in_screen():
+def app_screen():
     create_wine_table()
     upload_photo()
 
-login_screen()
+if st.session_state['logged_in'] == False:
+    login_screen()
+else:
+    app_screen()
