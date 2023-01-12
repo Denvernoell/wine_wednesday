@@ -94,7 +94,7 @@ def login_page():
     
 
         if st.button("Sign up"):
-            user = supabase.auth.sign_up(email=email, password=password)
+            st.session_state['user'] = supabase.auth.sign_up(email=email, password=password)
             st.write(user)
             st.write(f"Signed up {email}")
 
@@ -102,7 +102,7 @@ def login_page():
         st.markdown(E)
         
     if st.button("Sign in"):
-        user = supabase.auth.sign_in(email=email, password=password)
+        st.session_state['user'] = supabase.auth.sign_in(email=email, password=password)
         st.session_state['logged_in'] = True
     # sign_out()
     # reset_password()
